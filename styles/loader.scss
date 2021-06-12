@@ -1,0 +1,84 @@
+@import 'modules/variables';
+@import 'modules/mixin';
+
+$cSubTitle: #535353;
+$cWineRed: #904669;
+
+#global-container {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.pace {
+   
+  z-index: 2000;
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+}
+   
+  .pace .pace-progress {
+    transform: none !important;
+    text-align: center;
+}
+   
+  .pace .pace-progress:after {
+    content: attr(data-progress-text);
+    display:block;
+    font-weight: 100;
+    font-size: 2em;
+    font-family: 'Helvetica Neue', 'Yu Gothic','Meiryo' ,'sans-serif';
+    color: $cSubTitle;
+}
+
+.pace-progress-inner {
+
+    width: 40px;
+    height: 40px;
+    background-color: $cWineRed;
+    margin: 0 auto;
+
+    @include animation(
+        $name: rotation-diagram,
+        $duration: 1.2s,
+        $iteration-count: infinite,
+        $timing-function: ease-in-out,
+        $delay: 0s
+    );
+}
+    
+    
+
+  .pace.pace-inactive {
+    display: none;
+  }
+
+
+
+  .pace-done #global-container {
+      opacity: 1;
+
+  }
+
+  @keyframes rotation-diagram {
+    
+    0%{ 
+      transform: rotateX(0) rotateY(0);
+      perspective: 120px;
+    }
+
+    50%{
+      transform: rotateX(-180deg) rotateY(0);
+      perspective: 120px;
+    }
+
+    100%{
+      transform: rotateX(-180deg) rotateY(180deg);
+      perspective: 120px;
+    }
+  }
